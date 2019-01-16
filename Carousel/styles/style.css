@@ -3,7 +3,7 @@ body {
 }
 
 .carousel-wrap {
-  max-width: 1080px;
+  max-width: 1120px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -35,14 +35,6 @@ body {
   height: 200px;
   border: 1px solid #ABABAB;
   vertical-align: top;
-}
-
-.slides > .slide:first-child {
-  margin-left: 0;
-}
-
-.slides > .slide:last-child {
-  margin-right: 0;
 }
 
 .slides > .slide img {

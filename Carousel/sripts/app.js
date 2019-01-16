@@ -27,20 +27,41 @@ class Carousel {
     listenEvents() {
         this.elements.prev.addEventListener('click', () => {
             if (this.currentIndex <= 0) {
-                return;
+                this.clonedSlides()
+                this.elements.slides.style.transition = "none";
+                this.slidesMargin += -(this.getSlideWidth(this.currentIndex))*(this.slides.length);
+                this.elements.slides.style.marginLeft = `${this.slidesMargin}px`;
+                this.currentIndex = this.slides.length;
             }
             this.slidesMargin += this.getSlideWidth(this.currentIndex - 1);
             this.elements.slides.style.marginLeft = `${this.slidesMargin}px`;
-            this.currentIndex--;
+            this.currentIndex --;
+            this.elements.slides.style.transition = 'all 300ms linear 0s';
         });
         this.elements.next.addEventListener('click', () => {
-            if (this.currentIndex >= this.slides.length - 1) {
-                return;
+            if (this.currentIndex >= this.slides.length - 3) {
+                this.clonedSlides();
+                if (this.currentIndex === this.slides.length) {
+                    this.elements.slides.style.transition = "none";
+                    this.slidesMargin = 0;
+                    this.elements.slides.style.marginLeft = `${this.slidesMargin}px`;
+                    this.currentIndex = 0;
+                }
             }
             this.slidesMargin -= this.getSlideWidth(this.currentIndex);
             this.elements.slides.style.marginLeft = `${this.slidesMargin}px`;
-            this.currentIndex++;
+            this.currentIndex ++;
+            this.elements.slides.style.transition = 'all 300ms linear 0s';
         });
+    }
+
+    clonedSlides() {
+        const sumOfSlides = this.el.querySelectorAll('.slide').length;
+        if (sumOfSlides === 7) {
+            this.elements.slides.appendChild(this.slides[0].cloneNode(true));
+            this.elements.slides.appendChild(this.slides[1].cloneNode(true));
+            this.elements.slides.appendChild(this.slides[2].cloneNode(true));
+        }
     }
 
     getSlideWidth(index) {
