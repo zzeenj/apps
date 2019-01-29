@@ -1,0 +1,14 @@
+*,*:before,*:after {
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  padding-top: 100px;
+  overflow: hidden;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  color: #000;
+  height: 1000px;
+}
